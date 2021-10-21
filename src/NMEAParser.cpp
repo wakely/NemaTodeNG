@@ -31,18 +31,13 @@ std::string NMEAParseError::what() {
 }
 
 // --------- NMEA SENTENCE --------------
-
-NMEASentence::NMEASentence()
-    : isvalid(false), checksumIsCalculated(false), calculatedChecksum(0), parsedChecksum(0) {}
-
+///////////////////////////////////////////////////////////////////////////////
 bool NMEASentence::valid() const {
   return isvalid;
 }
 
 bool NMEASentence::checksumOK() const {
-  return (checksumIsCalculated)
-         &&
-         (parsedChecksum == calculatedChecksum);
+  return (checksumIsCalculated) && (parsedChecksum == calculatedChecksum);
 }
 
 // true if the text contains a non-alpha numeric value
@@ -55,7 +50,7 @@ bool hasNonAlphaNum(string txt) {
   return false;
 }
 
-// true if alphanumeric or '-'
+// true if alphanumeric or '-' or '+'
 bool validParamChars(string txt) {
   for(const char i: txt) {
     if (!isalnum(i)) {
@@ -88,10 +83,6 @@ void trim(string &str) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// --------- NMEA PARSER --------------
-NMEAParser::NMEAParser()
-    : log(false), maxbuffersize(NMEA_PARSER_MAX_BUFFER_SIZE), fillingbuffer(false) {}
-
-
 void NMEAParser::setSentenceHandler(std::string cmdKey, std::function<void(const NMEASentence &)> handler) {
   eventTable.erase(cmdKey);
   eventTable.insert({cmdKey, handler});

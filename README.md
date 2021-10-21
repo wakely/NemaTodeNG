@@ -1,8 +1,11 @@
 # NemaTodeNG
 
-*Cross platform C++ 11 NMEA Parser & GPS Framework*
-
 Forked from ckgt's original repo with many updates stolen from all the other forks!
+Anything that works is due to ckgt.  Anything that is broken is due to my changes
+
+-----------------------------
+
+*Cross platform C++ 11 NMEA Parser & GPS Framework*
 
 NemaTode is yet another lightweight generic NMEA parser.
 
@@ -12,7 +15,6 @@ Confirmed on MSVC 2013 and GCC 4.8.4.
 
 ## It's too easy!
 This is all you need to use the GPS NMEA sentence data.
-
 
     NMEAParser parser;
     GPSService gps(parser);
@@ -37,9 +39,6 @@ This is all you need to use the GPS NMEA sentence data.
     }
     
 
-    
-    
-
       
 
 ----
@@ -56,7 +55,6 @@ This is all you need to use the GPS NMEA sentence data.
   - SiRF Control sentences: ```` PSRF100, PSRF103 ````
 
 * **GPS Fix** class to manage and organize all the GPS related data.
-
 
 * **Flexible**
    - Stream data directly from a hardware byte stream

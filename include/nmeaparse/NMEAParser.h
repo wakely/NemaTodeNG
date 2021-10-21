@@ -29,19 +29,19 @@ namespace nmea {
     class NMEASentence {
         friend NMEAParser;
       public:
-        NMEASentence();
+        NMEASentence()=default;
         virtual ~NMEASentence()=default;
 
       private:
-        bool isvalid;
+        bool isvalid{false};
       public:
         std::string text;      //whole plaintext of the received command
         std::string name;      //name of the command
         std::vector<std::string> parameters;  //list of parameters from the command
         std::string checksum;
-        bool checksumIsCalculated;
-        uint8_t parsedChecksum;
-        uint8_t calculatedChecksum;
+        bool checksumIsCalculated{false};
+        uint8_t parsedChecksum{0};
+        uint8_t calculatedChecksum{0};
 
         enum MessageID {    // These ID's are according to NMEA standard.
           Unknown = -1,
@@ -76,45 +76,39 @@ namespace nmea {
     /////////////////////////////////////////////////////////////////////////////////////////
     class NMEAParser {
       public:
-        NMEAParser();
+        NMEAParser()=default;
         virtual ~NMEAParser()=default;
 
       private:
         std::unordered_map<std::string, std::function<void(NMEASentence)>> eventTable;
         std::string buffer;
-        bool fillingbuffer;
-        uint32_t maxbuffersize;    //limit the max size if no newline ever comes... Prevents huge buffer string internally
+        bool fillingbuffer{false};
+        uint32_t maxbuffersize{NMEA_PARSER_MAX_BUFFER_SIZE};    //limit the max size if no newline ever comes... Prevents huge buffer string internally
 
         //fills the given NMEA sentence with the results of parsing the string.
         void parseText(NMEASentence &nmea, std::string s);
-
         void onInfo(NMEASentence &n, std::string s);
-
         void onWarning(NMEASentence &n, std::string s);
-
         void onError(NMEASentence &n, std::string s);
 
       public:
-        bool log;
+        bool log{false};
 
         Event<void(const NMEASentence &)> onSentence;        // called every time parser receives any NMEA sentence
 
-        void setSentenceHandler(std::string cmdKey, std::function<void(
-            const NMEASentence &)> handler);  //one handler called for any named sentence where name is the "cmdKey"
-        std::string
+        //one handler called for any named sentence where name is the "cmdKey"
+        void setSentenceHandler(std::string cmdKey, std::function<void(const NMEASentence &)> handler);
 
-        getRegisteredSentenceHandlersCSV();                          // show a list of message names that currently have handlers.
+        std::string getRegisteredSentenceHandlersCSV();  // show a list of message names that currently have handlers.
 
         // Byte streaming functions
         void readByte(uint8_t b);
-
         void readBuffer(uint8_t *b, uint32_t size);
-
+        void readBuffer(std::vector<uint8_t> in){ readBuffer(in.data(), in.size());}
         void readLine(std::string line);
 
         // This function expects the data to be a single line with an actual sentence in it, else it throws an error.
-        void readSentence(
-            std::string cmd);        // called when parser receives a sentence from the byte stream. Can also be called by user to inject sentences.
+        void readSentence(std::string cmd);   // called when parser receives a sentence from the byte stream. Can also be called by user to inject sentences.
 
         static uint8_t calculateChecksum(std::string);    // returns checksum of string -- XOR
 

@@ -88,7 +88,6 @@ namespace nmea {
         double  rawTime{0};
         int32_t rawDate{0};
 
-
         time_t getTime();
 
         // Set directly from the NMEA time stamp
