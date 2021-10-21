@@ -7,15 +7,12 @@
  *  See the license file included with this source.
  */
 
-#ifndef NUMBERCONVERSION_H_
-#define NUMBERCONVERSION_H_
-
+#pragma once
 
 #include <cstdint>
 #include <string>
 #include <sstream>
 #include <exception>
-
 
 namespace nmea {
 
@@ -34,10 +31,8 @@ public:
 	}
 };
 
-
-
-
 double parseDouble(std::string s);
+
 int64_t parseInt(std::string s, int radix = 10);
 
 //void NumberConversion_test();
@@ -46,4 +41,3 @@ int64_t parseInt(std::string s, int radix = 10);
 
 
 
-#endif /* NUMBERCONVERSION_H_ */

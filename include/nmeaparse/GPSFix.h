@@ -7,8 +7,7 @@
  *  See the license file included with this source.
  */
 
-#ifndef GPSFIX_H_
-#define GPSFIX_H_
+#pragma once
 
 #include <cstdint>
 #include <ctime>
@@ -25,9 +24,7 @@ namespace nmea {
 	class GPSFix;
 	class GPSService;
 
-
 	// =========================== GPS SATELLITE =====================================
-
 	class GPSSatellite {
 	public:
 		GPSSatellite() :
@@ -46,14 +43,7 @@ namespace nmea {
 		operator std::string();
 	};
 
-
-
-
-
-
 	// =========================== GPS ALMANAC =====================================
-
-
 	class GPSAlmanac {
 		friend GPSService;
 	private:
@@ -79,11 +69,7 @@ namespace nmea {
 
 	};
 
-
-
-
 	// =========================== GPS TIMESTAMP =====================================
-
 	// UTC time
 	class GPSTimestamp {
 	private:
@@ -116,13 +102,7 @@ namespace nmea {
 		std::string toString();
 	};
 
-
-
-
-
-
-	// =========================== GPS FIX =====================================
-
+  // =========================== GPS FIX =====================================
 	class GPSFix {
 		friend GPSService;
 
@@ -179,4 +159,3 @@ namespace nmea {
 
 }
 
-#endif /* GPSFIX_H_ */

@@ -7,9 +7,7 @@
  *  See the license file included with this source.
  */
 
-#ifndef NMEAPARSER_H_
-#define NMEAPARSER_H_
-
+#pragma once
 
 #include <nmeaparse/Event.h>
 #include <string>
@@ -114,5 +112,3 @@ public:
 };
 
 }
-
-#endif /* NMEAPARSER_H_ */

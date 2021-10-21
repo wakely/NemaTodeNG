@@ -7,21 +7,16 @@
  *  See the license file included with this source.
  */
 
-#ifndef EVENT_H_
-#define EVENT_H_
+#pragma once
 
 #include <list>
 #include <functional>
 #include <cstdint>
 
-
-
 namespace nmea {
-
 
 	template<class> class EventHandler;
 	template<class> class Event;
-
 
 	template<typename... Args>
 	class EventHandler<void(Args...)>
@@ -98,7 +93,6 @@ namespace nmea {
 
 	template<typename... Args>
 	uint64_t EventHandler<void(Args...)>::LastID = 0;
-
 
 	template <typename ... Args>
 	class Event<void(Args...)>
@@ -210,8 +204,5 @@ namespace nmea {
 
 	};
 
-
-
 }
 
-#endif /* EVENT_H_ */
