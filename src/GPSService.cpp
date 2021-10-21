@@ -76,6 +76,8 @@ void GPSService::attachToParser(NMEAParser& _parser){
 	_parser.setSentenceHandler("PSRF150", [this](const NMEASentence& nmea){
 		this->read_PSRF150(nmea);
 	});
+  ///=================================================================================
+  /// GP Sentences
 	_parser.setSentenceHandler("GPGGA", [this](const NMEASentence& nmea){
 		this->read_GPGGA(nmea);
 	});
@@ -91,6 +93,34 @@ void GPSService::attachToParser(NMEAParser& _parser){
 	_parser.setSentenceHandler("GPVTG", [this](const NMEASentence& nmea){
 		this->read_GPVTG(nmea);
 	});
+  ///=================================================================================
+  /// GN Sentences
+  _parser.setSentenceHandler("GNGGA", [this](const NMEASentence& nmea){
+    this->read_GPGGA(nmea);
+  });
+  _parser.setSentenceHandler("GNVTG", [this](const NMEASentence& nmea){
+    this->read_GPVTG(nmea);
+  });
+  _parser.setSentenceHandler("GNRMC", [this](const NMEASentence& nmea){
+    this->read_GPRMC(nmea);
+  });
+  _parser.setSentenceHandler("GNGSA", [this](const NMEASentence& nmea){
+    this->read_GPGSA(nmea);
+  });
+  ///=================================================================================
+  /// GL Sentences
+  _parser.setSentenceHandler("GLGGA", [this](const NMEASentence& nmea){
+    this->read_GPGGA(nmea);
+  });
+  _parser.setSentenceHandler("GLVTG", [this](const NMEASentence& nmea){
+    this->read_GPVTG(nmea);
+  });
+  _parser.setSentenceHandler("GLRMC", [this](const NMEASentence& nmea){
+    this->read_GPRMC(nmea);
+  });
+  _parser.setSentenceHandler("GLGSA", [this](const NMEASentence& nmea){
+    this->read_GPGSA(nmea);
+  });
 
 }
 
