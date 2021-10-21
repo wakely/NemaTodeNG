@@ -133,16 +133,7 @@ namespace nmea {
         };
 
       public:
-        // Typenames
-        // (none)
-
-        // Static members
-        // (none)
-
-        // Properties
-        bool enabled;
-
-        // Functions
+        bool enabled{false};
 
         void call(Args... args) {
           if (!enabled) { return; }

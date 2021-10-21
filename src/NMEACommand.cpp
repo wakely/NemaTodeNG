@@ -18,7 +18,7 @@ string NMEACommand::toString() {
   return addChecksum(message);
 }
 
-string NMEACommand::addChecksum(std::string s) {
+string NMEACommand::addChecksum(const std::string& s) {
   stringstream zz;
   zz << name << "," << s;
   checksum = NMEAParser::calculateChecksum(zz.str());
@@ -29,7 +29,7 @@ string NMEACommand::addChecksum(std::string s) {
   ss.flags(oldflags);  //reset
 
   return ss.str();
-};
+}
 
 /*
 // $PSRF100,0,9600,8,1,0*0C

@@ -77,7 +77,7 @@ namespace nmea {
     class NMEAParser {
       public:
         NMEAParser();
-        virtual ~NMEAParser();
+        virtual ~NMEAParser()=default;
 
       private:
         std::unordered_map<std::string, std::function<void(NMEASentence)>> eventTable;

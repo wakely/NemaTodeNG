@@ -86,11 +86,10 @@ void trim(string &str) {
 }
 
 
-// --------- NMEA PARSER --------------
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// --------- NMEA PARSER --------------
 NMEAParser::NMEAParser()
     : log(false), maxbuffersize(NMEA_PARSER_MAX_BUFFER_SIZE), fillingbuffer(false) {}
-
-NMEAParser::~NMEAParser() {}
 
 
 void NMEAParser::setSentenceHandler(std::string cmdKey, std::function<void(const NMEASentence &)> handler) {

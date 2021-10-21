@@ -21,11 +21,11 @@ namespace nmea {
 
         std::string message;
         std::string name;
-        char checksum;
+        char checksum{};
 
         virtual std::string toString();
 
-        std::string addChecksum(std::string s);
+        std::string addChecksum(const std::string& s);
     };
 
     /////////////////////////////////////////////////////////////////////////////////////////

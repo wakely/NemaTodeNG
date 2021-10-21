@@ -112,17 +112,15 @@ namespace nmea {
     class GPSFix {
         friend GPSService;
 
-      private:
-
-        bool haslock;
-
-        bool setlock(bool b);    //returns true if lock status **changed***, false otherwise.
-
-
       public:
         GPSFix();
         virtual ~GPSFix() = default;
 
+      private:
+        bool haslock{false};
+        bool setlock(bool b);    //returns true if lock status **changed***, false otherwise.
+
+      public:
         GPSAlmanac almanac;
         GPSTimestamp timestamp;
 

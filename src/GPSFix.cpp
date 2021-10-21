@@ -136,7 +136,7 @@ GPSTimestamp::GPSTimestamp() {
 
   rawTime = 0;
   rawDate = 0;
-};
+}
 
 // indexed from 1!
 std::string GPSTimestamp::monthName(uint32_t index) {
@@ -161,7 +161,7 @@ std::string GPSTimestamp::monthName(uint32_t index) {
       "December"
   };
   return names[index - 1];
-};
+}
 
 // Returns seconds since Jan 1, 1970. Classic Epoch time.
 time_t GPSTimestamp::getTime() {
@@ -202,7 +202,7 @@ std::string GPSTimestamp::toString() {
   std::stringstream ss;
   ss << hour << "h " << min << "m " << sec << "s" << "  " << monthName(month) << " " << day << " " << year;
   return ss.str();
-};
+}
 
 
 // =====================================================
@@ -277,7 +277,7 @@ double GPSFix::verticalAccuracy() {
 std::string GPSFix::travelAngleToCompassDirection(double deg, bool abbrev) {
 
   //normalize, just in case
-  int32_t c = (int32_t) round(deg / 360.0 * 8.0);
+  auto c = (int32_t) round(deg / 360.0 * 8.0);
   int32_t r = c % 8;
   if (r < 0) {
     r = 8 + r;
@@ -311,7 +311,7 @@ std::string GPSFix::travelAngleToCompassDirection(double deg, bool abbrev) {
     return dirs[r];
   }
 
-};
+}
 
 std::string fixStatusToString(char status) {
   switch (status) {
