@@ -34,11 +34,13 @@ namespace nmea {
 
       private:
         bool isvalid{false};
+
       public:
-        std::string text;      //whole plaintext of the received command
-        std::string name;      //name of the command
-        std::vector<std::string> parameters;  //list of parameters from the command
+        std::string text;                     // whole plaintext of the received command
+        std::string name;                     // name of the command
+        std::vector<std::string> parameters;  // list of parameters from the command
         std::string checksum;
+
         bool checksumIsCalculated{false};
         uint8_t parsedChecksum{0};
         uint8_t calculatedChecksum{0};
@@ -55,7 +57,6 @@ namespace nmea {
         };
 
         bool checksumOK() const;
-
         bool valid() const;
 
     };
@@ -63,9 +64,9 @@ namespace nmea {
     /////////////////////////////////////////////////////////////////////////////////////////
     class NMEAParseError : public std::exception {
       public:
-        NMEAParseError(std::string msg);
-        NMEAParseError(std::string msg, NMEASentence n);
-        virtual ~NMEAParseError();
+        explicit NMEAParseError(std::string msg);
+        NMEAParseError(std::string msg, const NMEASentence& n);
+        virtual ~NMEAParseError()=default;
 
       public:
         std::string message;

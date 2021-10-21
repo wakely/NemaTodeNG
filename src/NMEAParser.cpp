@@ -13,6 +13,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+#include <utility>
 
 using namespace std;
 using namespace nmea;
@@ -20,11 +21,8 @@ using namespace nmea;
 
 // --------- NMEA PARSE ERROR--------------
 
-NMEAParseError::NMEAParseError(std::string msg): message(msg) {}
-
-NMEAParseError::NMEAParseError(std::string msg, NMEASentence n): message(msg), nmea(n) {}
-
-NMEAParseError::~NMEAParseError() {}
+NMEAParseError::NMEAParseError(std::string msg): message(std::move(msg)) {}
+NMEAParseError::NMEAParseError(std::string msg, const NMEASentence& n): message(std::move(msg)), nmea(n) {}
 
 std::string NMEAParseError::what() {
   return message;
