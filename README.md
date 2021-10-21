@@ -1,6 +1,8 @@
-# NemaTode
+# NemaTodeNG
 
 *Cross platform C++ 11 NMEA Parser & GPS Framework*
+
+Forked from ckgt's original repo with many updates stolen from all the other forks!
 
 NemaTode is yet another lightweight generic NMEA parser.
 
