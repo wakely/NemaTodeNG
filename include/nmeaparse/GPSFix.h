@@ -117,9 +117,9 @@ namespace nmea {
         GPSAlmanac almanac;
         GPSTimestamp timestamp;
 
-        char status    {'V'};      // Status: A=active, V=void (not locked)
+        char status    {'V'};   // Status: A=active, V=void (not locked)
         uint8_t type   {1};     // Type: 1=none, 2=2d, 3=3d
-        uint8_t quality{0};  // Quality:
+        uint8_t quality{0};     // Quality:
         //    0 = invalid
         //    1 = GPS fix (SPS)
         //    2 = DGPS fix
@@ -132,7 +132,8 @@ namespace nmea {
         double horizontalDilution{}; // Horizontal dilution of precision, initialized to 100, best =1, worst = >20
         double verticalDilution{};   // Vertical is less accurate
 
-        double altitude{};           // meters
+        double altitude{};           // meters - $GPGGA[8]
+        double geoidHeight{};        // meters - $GPGGA[10] - height of geoid (mean sea level) above WGS84
         double latitude{};           // degrees N
         double longitude{};          // degrees E
         double speed{};              // km/h

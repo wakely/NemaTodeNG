@@ -211,6 +211,13 @@ void GPSService::read_GPGGA(const NMEASentence &nmea) {
       // leave old value
     }
 
+    // GEOID Height
+    if (!nmea.parameters[10].empty()) {
+      this->fix.geoidHeight = parseDouble(nmea.parameters[10]);
+    } else {
+      // leave old value
+    }
+
     //calling handlers
     if (lockupdate) {
       this->onLockStateChanged(this->fix.haslock);
